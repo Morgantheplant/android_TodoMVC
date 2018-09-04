@@ -41,6 +41,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:padding="10dp"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:background="@drawable/input_todo_dropshadow"
         android:hint="@string/enter_todo"
         android:inputType="textPersonName" />
@@ -51,6 +54,7 @@
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/round_button"
             android:text="@string/add"
@@ -64,12 +68,38 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintTop_toBottomOf="@id/inputTodo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteX="9dp" />
-
-
-
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/todosView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all"
+            android:onClick="showAll"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/active"
+            android:onClick="showActive"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete"
+            android:onClick="showComplete"
+            />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

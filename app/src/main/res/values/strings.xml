@@ -3,4 +3,8 @@
     <string name="enter_todo">What needs to be done?</string>
     <string name="add">+</string>
     <string name="title">todos</string>
+    <string name="remove">x</string>
+    <string name="all">All</string>
+    <string name="active">Active</string>
+    <string name="complete">Complete</string>
 </resources>
