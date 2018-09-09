@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
         android:text="@string/title"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@color/titleAccent"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +28,8 @@
         android:id="@+id/inputTodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/todosView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,19 +58,18 @@
             android:text="@string/add"
             android:onClick="addTodo"
             app:layout_constraintEnd_toEndOf="parent" />
-
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/todosView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         app:layout_constraintBottom_toTopOf="@id/footer"
-        app:layout_constraintTop_toBottomOf="@id/inputTodo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="9dp" />
+        app:layout_constraintTop_toBottomOf="@id/inputTodo" />
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
@@ -84,22 +81,28 @@
         android:gravity="center"
         >
         <Button
+            android:id="@+id/all_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/all"
             android:onClick="showAll"
+            android:background="@drawable/active_button_background"
             />
         <Button
+            android:id="@+id/active_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/active"
             android:onClick="showActive"
+            android:background="@android:color/transparent"
             />
         <Button
+            android:id="@+id/complete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/complete"
             android:onClick="showComplete"
+            android:background="@android:color/transparent"
             />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
