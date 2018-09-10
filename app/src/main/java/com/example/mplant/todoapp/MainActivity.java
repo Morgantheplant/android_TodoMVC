@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements TodosAdapter.OnUp
         aTodoAdapter = new ArrayAdapter<>(this,android.R.layout.list_content, todoItems);
         this.initRecyclerView();
         mTodoViewModel = ViewModelProviders.of(this).get(TodoViewModel.class);
-        mTodoViewModel.getAllTodos().observe(this, new Observer<List<TodoItem>>() {
+        mTodoViewModel.getTodos().observe(this, new Observer<List<TodoItem>>() {
             @Override
             public void onChanged(@Nullable final List<TodoItem> todos) {
                 todoItems = new ArrayList<>();
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements TodosAdapter.OnUp
                 mAdapter.setTodos(todoItems);
             }
         });
+        mTodoViewModel.setCurrentFilter(TodosState.ALL);
 
     }
 
@@ -111,59 +112,32 @@ public class MainActivity extends AppCompatActivity implements TodosAdapter.OnUp
         if(todoText.length() > 0){
             TodoItem todo = new TodoItem(todoText);
             mTodoViewModel.insert(todo);
+            todoTextField.clear();
         }
-    }
-
-//    public Boolean getTodoVisibleState(Todo todo){
-//        switch (currentState){
-//            case ALL:
-//                return true;
-//            case ACTIVE:
-//                return !todo.getIsComplete();
-//            case COMPLETED:
-//                return todo.getIsComplete();
-//            default:
-//                return false;
-//        }
-//    }
-//
-//    public void updateTodosVisibility(TodosState state){
-//        setCurrentState(state);
-//    }
-
-
-    private void setCurrentState(TodosState state){
-        this.currentState = state;
     }
 
     public void showAll(View v){
-        if(TodosState.ALL != currentState){
             v.setBackgroundResource(R.drawable.active_button_background);
-//            updateTodosVisibility(TodosState.ALL);
             int color = ContextCompat.getColor(this, android.R.color.transparent);
             completeButton.setBackgroundColor(color);
             activeButton.setBackgroundColor(color);
-        }
+            mTodoViewModel.setCurrentFilter(TodosState.ALL);
     }
 
     public void showComplete(View v){
-        if(TodosState.COMPLETED != currentState){
             v.setBackgroundResource(R.drawable.active_button_background);
-//            updateTodosVisibility(TodosState.COMPLETED);
             int color = ContextCompat.getColor(this, android.R.color.transparent);
             activeButton.setBackgroundColor(color);
             allButton.setBackgroundColor(color);
-        }
+            mTodoViewModel.setCurrentFilter(TodosState.COMPLETED);
     }
 
     public void showActive(View v){
-        if(TodosState.ACTIVE != currentState){
             v.setBackgroundResource(R.drawable.active_button_background);
-//            updateTodosVisibility(TodosState.ACTIVE);
             int color = ContextCompat.getColor(this, android.R.color.transparent);
             completeButton.setBackgroundColor(color);
             allButton.setBackgroundColor(color);
-        }
+            mTodoViewModel.setCurrentFilter(TodosState.ACTIVE);
 
     }
 }

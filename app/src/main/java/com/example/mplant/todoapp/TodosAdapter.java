@@ -69,6 +69,7 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.MyViewHolder
         return vh;
     }
 
+
     @Override
     public void onBindViewHolder(final TodosAdapter.MyViewHolder holder, final int position) {
         TodoItem todo = mDataset.get(position);
@@ -83,6 +84,8 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.MyViewHolder
                 Intent i = new Intent(context, EditTodoActivity.class);
                 i.putExtra("todo_text", todo.getText());
                 i.putExtra("position", position);
+                i.putExtra("create_date", todo.getCreateDate().getTime());
+                i.putExtra("update_date", todo.getLastUpdated().getTime());
                 ((Activity) context).startActivityForResult(i, REQUEST_CODE);
             }
         });

@@ -9,28 +9,36 @@ import java.util.List;
 public class TodoRepository {
     private TodoDao mTodoDao;
     private LiveData<List<TodoItem>> mAllTodos;
+    private LiveData<List<TodoItem>> mActiveTodos;
+    private LiveData<List<TodoItem>> mCompleteTodos;
     TodoRepository(Application application) {
         TodoRoomDatabase db = TodoRoomDatabase.getDatabase(application);
         mTodoDao = db.todoDao();
         mAllTodos = mTodoDao.getAllTodos();
+        mActiveTodos = mTodoDao.getActiveTodos();
+        mCompleteTodos = mTodoDao.getCompleteTodos();
+
     }
     LiveData<List<TodoItem>> getAllTodos() {
         return mAllTodos;
     }
+    LiveData<List<TodoItem>> getActiveTodos() {
+        return mActiveTodos;
+    }
+    LiveData<List<TodoItem>> getCompleteTodos() {
+        return mCompleteTodos;
+    }
     public void insert (TodoItem todo) {
         new insertAsyncTask(mTodoDao).execute(todo);
     }
-
     public void update(TodoItem todo) {
         new updateAsyncTask(mTodoDao).execute(todo);
     }
-
     public void delete(TodoItem todo) {
         new deleteAsyncTask(mTodoDao).execute(todo);
     }
 
     private static class insertAsyncTask extends AsyncTask<TodoItem, Void, Void> {
-        
         private TodoDao mAsyncTaskDao;
         insertAsyncTask(TodoDao dao) {
             mAsyncTaskDao = dao;
