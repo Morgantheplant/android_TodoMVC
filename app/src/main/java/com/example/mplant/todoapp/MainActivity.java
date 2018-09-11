@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements TodosAdapter.OnUp
     private TodosAdapter mAdapter;
     private EditText todoInput;
     private int REQUEST_CODE = 20;
-    private TodosState currentState = TodosState.ALL;
     private Button allButton;
     private Button activeButton;
     private Button completeButton;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements TodosAdapter.OnUp
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE && data != null) {
             int position = data.getExtras().getInt("position", -1);
             if(position >= 0){
                 String todo_text = data.getExtras().getString("todo_text");

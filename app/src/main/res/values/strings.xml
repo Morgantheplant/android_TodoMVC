@@ -9,4 +9,7 @@
     <string name="complete">Complete</string>
     <string name="save">Save</string>
     <string name="back">Go Back</string>
+    <string name="last_updated">Last Updated: %1s</string>
+    <string name="create_date">Created On: %1s</string>
+    <string name="edit_todo">Edit Todo</string>
 </resources>
